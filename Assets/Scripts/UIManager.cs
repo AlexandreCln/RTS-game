@@ -50,22 +50,30 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void CheckBuildingButtons()
+    private void OnEnable()
     {
-        foreach (BuildingData data in Globals.BUILDING_DATA)
-        {
-            _buildingButtons[data.Code].interactable = data.CanBuy();
-        }
+        EventManager.AddListener("UpdateResourceTexts", _OnUpdateResourceTexts);
+        EventManager.AddListener("CheckBuildingButtons", _OnCheckBuildingButtons);
     }
 
-    public void UpdateResourceTexts()
+    private void OnDisable()
+    {
+        EventManager.RemoveListener("UpdateResourceTexts", _OnUpdateResourceTexts);
+        EventManager.RemoveListener("CheckBuildingButtons", _OnCheckBuildingButtons);
+    }
+
+    private void _OnUpdateResourceTexts()
     {
         foreach (KeyValuePair<string, GameResource> pair in Globals.GAME_RESOURCES)
-        {
             _SetResourceText(pair.Key, pair.Value.Amount);
-        }
     }
     
+    private void _OnCheckBuildingButtons()
+    {
+        foreach (BuildingData data in Globals.BUILDING_DATA)
+            _buildingButtons[data.Code].interactable = data.CanBuy();
+    }
+
     private void _SetResourceText(string resource, int value)
     {
         _resourceTexts[resource].text = value.ToString();

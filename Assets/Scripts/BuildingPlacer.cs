@@ -7,12 +7,6 @@ public class BuildingPlacer : MonoBehaviour
     private Ray _ray;
     private RaycastHit _raycastHit;
     private Vector3 _lastPlacementPosition;
-    private UIManager _uiManager;
-
-    private void Awake()
-    {
-        _uiManager = GetComponent<UIManager>();
-    }
 
     void Update()
     {
@@ -82,8 +76,8 @@ public class BuildingPlacer : MonoBehaviour
     void _PlaceBuilding()
     {
         _placedBuilding.Place();
-        _uiManager.UpdateResourceTexts();
-        _uiManager.CheckBuildingButtons();
+        EventManager.TriggerEvent("UpdateResourceTexts");
+        EventManager.TriggerEvent("CheckBuildingButtons");
 
         if (_placedBuilding.CanBuy())
              // keep on building the same building type
