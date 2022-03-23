@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BuildingPlacer : MonoBehaviour
+public class BuildingPlacer : UnitManager
 {
     private Building _placedBuilding = null;
     private Ray _ray;
@@ -36,7 +36,8 @@ public class BuildingPlacer : MonoBehaviour
 
             if (
                 _placedBuilding.HasValidPlacement &&
-                Input.GetMouseButtonDown(0) &&
+                // don't use GetMouseButtonDown cause this will select the unit at the same time
+                Input.GetMouseButtonUp(0) &&
                 !EventSystem.current.IsPointerOverGameObject()
             )
             {

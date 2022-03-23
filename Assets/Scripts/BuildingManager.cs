@@ -30,6 +30,11 @@ public class BuildingManager : UnitManager
         return validPlacement;
     }
 
+    protected override bool IsActive()
+    {
+        return _building.IsFixed;
+    }
+
     private bool HasValidPlacement()
     {
         if (_nCollisions > 0) return false;

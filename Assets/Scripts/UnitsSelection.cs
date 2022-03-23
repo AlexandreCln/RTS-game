@@ -1,12 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitsSelection : MonoBehaviour
 {
     private bool _isDraggingMouseBox = false;
     private Vector3 _dragStartPosition;
+    private Ray _ray;
+    private RaycastHit _raycastHit;
 
     private void Update()
     {
+        // Select with dragginx box
         if (Input.GetMouseButtonDown(0))
         {
             _isDraggingMouseBox = true;
@@ -18,6 +22,26 @@ public class UnitsSelection : MonoBehaviour
 
         if (_isDraggingMouseBox && _dragStartPosition != Input.mousePosition)
             _SelectUnitsInDraggingBox();
+
+        // Seleclt / desecect on click
+        if (Globals.SELECTED_UNITS.Count > 0)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+                _DeselectAllUnits();
+            if (Input.GetMouseButtonDown(0))
+            {
+                _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(
+                    _ray,
+                    out _raycastHit,
+                    1000f
+                ))
+                {
+                    if (_raycastHit.transform.tag == "Terrain")
+                        _DeselectAllUnits();
+                }
+            }
+        }
     }
 
     void OnGUI()
@@ -52,5 +76,12 @@ public class UnitsSelection : MonoBehaviour
             else
                 unit.GetComponent<UnitManager>().Deselect();
         }
+    }
+
+    private void _DeselectAllUnits()
+    {
+        List<UnitManager> selectedUnits = new List<UnitManager>(Globals.SELECTED_UNITS);
+        foreach (UnitManager um in selectedUnits)
+            um.Deselect();
     }
 }
