@@ -94,8 +94,6 @@ public class Building
 
         foreach (ResourceValue resource in _data.cost)
         {
-            Debug.Log(resource.code);
-            Debug.Log(resource.amount);
             Globals.GAME_RESOURCES[resource.code].AddAmount(-resource.amount);
         }
     }

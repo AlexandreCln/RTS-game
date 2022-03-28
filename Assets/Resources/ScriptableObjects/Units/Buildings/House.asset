@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11e991c171884c4abd083be98d40699, type: 3}
   m_Name: House
   m_EditorClassIdentifier: 
-  code: 
-  unitName: 
-  healthpoints: 0
-  prefab: {fileID: 0}
-  cost: []
+  code: house
+  unitName: Maison
+  description: Les maisons permettent d'agmenter la population du village.
+  healthpoints: 100
+  prefab: {fileID: 5780910605125467601, guid: e21257c366494e84eb899f60e10e544e, type: 3}
+  cost:
+  - code: gold
+    amount: 100
+  - code: wood
+    amount: 120
