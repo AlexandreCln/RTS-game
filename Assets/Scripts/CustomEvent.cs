@@ -4,11 +4,11 @@ using UnityEngine.Events;
 // similarly to C unions: we define several fields but we use only one at a time
 public class CustomEventData
 {
-    public BuildingData buildingData;
+    public UnitData unitData;
 
-    public CustomEventData(BuildingData buildingData)
+    public CustomEventData(BuildingData unitData)
     {
-        this.buildingData = buildingData;
+        this.unitData = unitData;
     }
 }
 

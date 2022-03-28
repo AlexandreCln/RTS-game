@@ -4,6 +4,9 @@ using UnityEngine;
 public class UnitManager : MonoBehaviour
 {
     public GameObject selectionCircle;
+
+    protected BoxCollider _collider;
+    protected virtual Unit Unit { get; set; }
     
     private Transform _canvas;
     private GameObject _healthbar;
@@ -11,6 +14,12 @@ public class UnitManager : MonoBehaviour
     private void Awake()
     {
         _canvas = GameObject.Find("Canvas").transform;
+    }
+
+    public void Initialize(Unit unit)
+    {
+        _collider = GetComponent<BoxCollider>();
+        Unit = unit;
     }
 
     private void OnMouseDown()

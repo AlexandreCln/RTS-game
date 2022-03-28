@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8548044257af49b4ab6fbd4596e338c0, type: 3}
-  m_Name: House
+  m_Name: Tower
   m_EditorClassIdentifier: 
-  code: house
-  unitName: Maison
-  description: Les maisons permettent d'agmenter la population du village.
+  code: 
+  unitName: 
+  description: 
   healthpoints: 0
   prefab: {fileID: 0}
   cost: []

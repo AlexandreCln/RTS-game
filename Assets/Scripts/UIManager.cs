@@ -116,7 +116,7 @@ public class UIManager : MonoBehaviour
 
     private void _OnHoverBuildingButton(CustomEventData data)
     {
-        SetInfoPanel(data.buildingData);
+        SetInfoPanel(data.unitData);
         ShowInfoPanel(true);
     }
 
@@ -125,7 +125,7 @@ public class UIManager : MonoBehaviour
         ShowInfoPanel(false);
     }
 
-    public void SetInfoPanel(BuildingData data)
+    public void SetInfoPanel(UnitData data)
     {
         // update texts
         if (data.code != "")
